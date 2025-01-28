@@ -7,6 +7,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -14,6 +15,9 @@
             background-color: #222;
             color: white;
             font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin: 0 0 20px;
         }
         canvas {
             border: 2px solid white;
@@ -25,7 +29,7 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; color: aliceblue;">Snake Game</h1>
+    <h1>Snake Game</h1>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
 
     <script>
@@ -40,7 +44,7 @@
         let direction = "RIGHT";
         let food = generateFood();
         let score = 0;
-        let speed = 300; // Speed of the snake in milliseconds
+        let speed = 300; // Slower speed of the snake in milliseconds
 
         // Listen for keypress events
         document.addEventListener('keydown', changeDirection);
@@ -94,7 +98,7 @@
             if (head.x === food.x && head.y === food.y) {
                 score += 10;
                 food = generateFood();
-                speed = Math.max(speed - 5, 50); // Increase speed as the score increases
+                speed = Math.max(speed - 10, 100); // Decrease speed slightly but allow slower gameplay
                 clearInterval(gameInterval);
                 gameInterval = setInterval(gameLoop, speed);
             } else {
